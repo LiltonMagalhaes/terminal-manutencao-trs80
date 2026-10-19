@@ -1,0 +1,141 @@
+/* --- HEADER --- */
+.header {
+    position: fixed;
+    /* Fixa no topo */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 60px;
+    /* Altura do header */
+    background-color: #1a365d;
+    /* Azul escuro (tipo o da logo) */
+    color: white;
+    display: flex;
+    /* Coloca os itens lado a lado */
+    justify-content: space-between;
+    /* Espaça os itens (esquerda, centro, direita) */
+    align-items: center;
+    /* Centraliza verticalmente */
+    padding: 0 20px;
+    /* Espaçamento nas laterais */
+    box-sizing: border-box;
+    /* Garante que o padding não estoure a largura */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    /* Sombra suave */
+    z-index: 1000;
+    /* Garante que fique acima de tudo */
+}
+
+.header-titulo {
+    font-weight: bold;
+    font-size: 1.2rem;
+    letter-spacing: 1px;
+}
+
+.header-data,
+.header-hora {
+    font-size: 0.9rem;
+    font-variant-numeric: tabular-nums;
+    /* Deixa os números com largura igual (não "pula" ao mudar) */
+}
+
+/* --- BODY MAIN --- */
+.body-main {
+    padding-top: 80px;
+    /* Compensa o header fixo (60px + 20px de respiro) */
+    padding-bottom: 60px;
+    /* Compensa o footer fixo */
+    padding-left: 20px;
+    padding-right: 20px;
+    min-height: calc(100vh - 140px);
+    /* Ocupa o resto da tela */
+}
+
+/* --- FOOTER --- */
+.footer {
+    position: fixed;
+    /* Fixa no rodapé */
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 40px;
+    background-color: #1a365d;
+    /* Mesmo azul do header */
+    color: white;
+    display: flex;
+    justify-content: center;
+    /* Centraliza o texto */
+    align-items: center;
+    font-size: 0.8rem;
+    z-index: 1000;
+}
+
+/* --- GRID DO MENU --- */
+.menu-grid {
+    display: grid;
+    /* Cria colunas automáticas: no mínimo 250px, preenchendo o espaço */
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    /* Espaço entre os cards */
+    max-width: 1000px;
+    margin: 40px auto;
+    /* Centraliza o grid na tela */
+    padding: 0 20px;
+}
+
+/* --- CARD DO MENU --- */
+.card-menu {
+    background-color: #2b6cb0;
+    /* O azul confortável */
+    color: white;
+    padding: 30px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: transform 0.2s, background-color 0.2s, box-shadow 0.2s;
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.card-menu:hover {
+    background-color: #3182ce;
+    transform: translateY(-5px);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+}
+
+.card-menu h3 {
+    margin-top: 0;
+    font-size: 1.4rem;
+    margin-bottom: 10px;
+}
+
+.card-menu p {
+    font-size: 0.9rem;
+    opacity: 0.8;
+    margin: 0;
+}
+
+/* --- CARD DE TELA INTERNA (quando clica no card) --- */
+.card-tela {
+    background-color: #2b6cb0;
+    color: white;
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+.btn-voltar {
+    background-color: rgba(255, 255, 255, 0.2);
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    padding: 8px 15px;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-bottom: 20px;
+    transition: background-color 0.2s;
+}
+
+.btn-voltar:hover {
+    background-color: rgba(255, 255, 255, 0.3);
+}

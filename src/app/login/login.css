@@ -1,0 +1,124 @@
+@import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
+
+/* Força a tela toda a ser preta */
+:host {
+    display: block;
+    width: 100vw;
+    height: 100vh;
+    background-color: #000000;
+}
+
+.login-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    background-color: #000000;
+    font-family: 'VT323', monospace;
+    font-size: 1.4rem;
+}
+
+.login-terminal {
+    border: 2px solid #1a4d1a;
+    /* Borda verde escura */
+    padding: 40px;
+    width: 100%;
+    max-width: 500px;
+    background-color: #000000;
+    color: #33ff33;
+    /* Texto verde fósforo */
+    box-shadow: 0 0 20px rgba(51, 255, 51, 0.1);
+}
+
+.prompt {
+    margin-top: 0;
+    margin-bottom: 30px;
+    font-weight: bold;
+    border-bottom: 1px dashed #1a4d1a;
+    padding-bottom: 10px;
+    color: #33ff33 !important;
+    font-size: 1.5rem;
+}
+
+.form-linha {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 25px;
+}
+
+/* Força a label a ser verde */
+.form-linha label {
+    color: #33ff33 !important;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+/* O SEGREDO: !important para vencer o CSS branco antigo */
+.form-linha input {
+    background-color: #000000 !important;
+    border: 1px solid #1a4d1a !important;
+    color: #33ff33 !important;
+    padding: 12px;
+    font-family: 'VT323', monospace;
+    font-size: 1.3rem;
+    outline: none;
+}
+
+/* Força a cor do placeholder a ser verde escuro */
+.form-linha input::placeholder {
+    color: #1a4d1a !important;
+    opacity: 1;
+}
+
+.form-linha input:focus {
+    border-color: #33ff33 !important;
+    box-shadow: 0 0 10px #33ff33;
+}
+
+/* Força o botão a ser verde */
+.btn-executar {
+    background-color: #000000 !important;
+    color: #33ff33 !important;
+    border: 1px solid #33ff33 !important;
+    padding: 15px;
+    font-family: 'VT323', monospace;
+    font-size: 1.4rem;
+    cursor: pointer;
+    width: 100%;
+    margin-top: 10px;
+    transition: all 0.2s;
+    text-align: center;
+}
+
+.btn-executar:hover {
+    background-color: #1a4d1a !important;
+}
+
+.erro-terminal {
+    color: #ff3333 !important;
+    border: 1px solid #ff3333;
+    padding: 10px;
+    margin-top: 20px;
+    background-color: #000000;
+    text-align: center;
+    animation: piscar 1s infinite alternate;
+}
+
+.dica {
+    margin-top: 30px;
+    text-align: center;
+    color: #33ff33 !important;
+    opacity: 0.5;
+    font-size: 1rem;
+}
+
+@keyframes piscar {
+    from {
+        opacity: 1;
+    }
+
+    to {
+        opacity: 0.5;
+    }
+}

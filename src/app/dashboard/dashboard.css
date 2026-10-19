@@ -1,0 +1,436 @@
+@import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
+
+/* Variáveis Padrão (Verde) */
+:root {
+    --cor-fundo: #000000;
+    --cor-texto: #33ff33;
+    --cor-borda: #1a4d1a;
+    --cor-hover: #1a4d1a;
+}
+
+/* Temas */
+.verde {
+    --cor-fundo: #000000;
+    --cor-texto: #33ff33;
+    --cor-borda: #1a4d1a;
+    --cor-hover: #1a4d1a;
+}
+
+.ambar {
+    --cor-fundo: #0a0500;
+    --cor-texto: #ffb000;
+    --cor-borda: #4d3300;
+    --cor-hover: #332200;
+}
+
+.mono {
+    --cor-fundo: #111111;
+    --cor-texto: #e0e0e0;
+    --cor-borda: #444444;
+    --cor-hover: #333333;
+}
+
+/* Zera as margens do body para a tela toda ser preta */
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #000;
+}
+
+/* --- HEADER FIXO --- */
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 60px;
+    background-color: var(--cor-fundo);
+    color: var(--cor-texto);
+    border-bottom: 2px solid var(--cor-borda);
+    padding: 0 20px;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: 'VT323', monospace;
+    font-size: 1.3rem;
+    z-index: 1000;
+}
+
+/* --- FOOTER FIXO --- */
+.footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 40px;
+    background-color: var(--cor-fundo);
+    color: var(--cor-texto);
+    border-top: 2px solid var(--cor-borda);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'VT323', monospace;
+    font-size: 1.3rem;
+    z-index: 1000;
+}
+
+/* --- BODY MAIN (Onde rola) --- */
+.body-main {
+    background-color: var(--cor-fundo);
+    color: var(--cor-texto);
+    font-family: 'VT323', monospace;
+    font-size: 1.3rem;
+    min-height: 100vh;
+
+    /* Respiro para não ficar embaixo do header/footer fixos */
+    padding-top: 80px;
+    padding-bottom: 60px;
+    padding-left: 20px;
+    padding-right: 20px;
+    box-sizing: border-box;
+}
+
+/* Controles do Header */
+.header-controles {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.temas {
+    display: flex;
+    gap: 8px;
+}
+
+.btn-tema {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    border: 2px solid transparent;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.btn-tema:hover {
+    transform: scale(1.1);
+    border-color: var(--cor-texto);
+}
+
+.btn-tema.verde {
+    background-color: #33ff33;
+}
+
+.btn-tema.ambar {
+    background-color: #ffb000;
+}
+
+.btn-tema.mono {
+    background-color: #e0e0e0;
+}
+
+/* Container do Conteúdo */
+.terminal-container {
+    max-width: 900px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+/* Caixas de Conteúdo */
+.box-terminal {
+    border: 2px solid var(--cor-borda);
+    padding: 20px;
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+.prompt {
+    margin-top: 0;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+/* Formulário */
+.form-linha {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 15px;
+}
+
+.form-linha input {
+    background-color: transparent;
+    border: 1px solid var(--cor-borda);
+    color: var(--cor-texto);
+    padding: 8px;
+    font-family: 'VT323', monospace;
+    font-size: 1.2rem;
+    outline: none;
+    margin-top: 5px;
+}
+
+.form-linha input:focus {
+    border-color: var(--cor-texto);
+    box-shadow: 0 0 8px var(--cor-texto);
+}
+
+.btn-executar {
+    background-color: transparent;
+    color: var(--cor-texto);
+    border: 1px solid var(--cor-texto);
+    padding: 10px 20px;
+    font-family: 'VT323', monospace;
+    font-size: 1.2rem;
+    cursor: pointer;
+    width: 100%;
+    margin-top: 10px;
+    transition: background-color 0.2s;
+}
+
+.btn-executar:hover {
+    background-color: var(--cor-hover);
+}
+
+/* Tabela */
+.tabela-terminal {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.tabela-terminal th,
+.tabela-terminal td {
+    border-bottom: 1px dashed var(--cor-borda);
+    padding: 10px;
+    text-align: left;
+}
+
+.btn-del {
+    background-color: transparent;
+    color: var(--cor-texto);
+    border: 1px solid var(--cor-borda);
+    cursor: pointer;
+    padding: 2px 8px;
+    font-family: 'VT323', monospace;
+}
+
+.btn-del:hover {
+    background-color: #ff3333;
+    color: #000;
+    border-color: #ff3333;
+}
+
+/* Área do Efeito de Digitação */
+.terminal-output {
+    margin-top: 15px;
+    color: var(--cor-texto);
+    font-weight: bold;
+    animation: piscar 1s infinite alternate;
+}
+
+@keyframes piscar {
+    from {
+        opacity: 1;
+    }
+
+    to {
+        opacity: 0.5;
+    }
+}
+
+/* Desabilita os inputs enquanto processa para o usuário não digitar por cima */
+input:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+/* NOVOS ESTILOS PARA EDIÇÃO */
+
+/* Borda brilhante quando o form está editando */
+.box-terminal.editando {
+    border-color: #ffb000;
+    /* Cor de alerta */
+    box-shadow: 0 0 10px rgba(255, 176, 0, 0.2);
+}
+
+.botoes-form {
+    display: flex;
+    gap: 10px;
+}
+
+/* Botão Cancelar */
+.btn-cancelar {
+    background-color: transparent;
+    color: #ff3333;
+    border: 1px solid #ff3333;
+    padding: 10px 20px;
+    font-family: 'VT323', monospace;
+    font-size: 1.2rem;
+    cursor: pointer;
+    width: 100%;
+    margin-top: 10px;
+    transition: background-color 0.2s;
+}
+
+.btn-cancelar:hover {
+    background-color: rgba(255, 51, 51, 0.1);
+}
+
+/* Botões de Ação na Tabela (EDIT / DEL) */
+.btn-acao {
+    background-color: transparent;
+    border: 1px solid transparent;
+    cursor: pointer;
+    font-family: 'VT323', monospace;
+    font-size: 1.1rem;
+    padding: 2px 6px;
+    margin-right: 5px;
+    transition: all 0.2s;
+}
+
+.btn-edit {
+    color: #ffb000;
+    /* Âmbar */
+    border-color: var(--cor-borda);
+}
+
+.btn-edit:hover {
+    border-color: #ffb000;
+    background-color: rgba(255, 176, 0, 0.1);
+}
+
+.btn-del {
+    color: #ff3333;
+    border-color: var(--cor-borda);
+}
+
+.btn-del:hover {
+    border-color: #ff3333;
+    background-color: rgba(255, 51, 51, 0.1);
+}
+
+.tabela-terminal tbody tr {
+    animation: fadeIn 0.4s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-5px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* =========================================
+   MODAL DE CONFIRMAÇÃO (Overlay)
+   ========================================= */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.85);
+    /* Escurece o fundo */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    /* Fica por cima de tudo */
+    backdrop-filter: blur(2px);
+    /* Efeito de vidro embaçado */
+}
+
+.modal-alerta {
+    background-color: var(--cor-fundo);
+    border: 2px solid #ff3333;
+    /* Borda vermelha de alerta */
+    padding: 30px;
+    max-width: 500px;
+    width: 90%;
+    box-shadow: 0 0 20px rgba(255, 51, 51, 0.3);
+    text-align: center;
+}
+
+.prompt-alerta {
+    color: #ff3333;
+    font-weight: bold;
+    font-size: 1.5rem;
+    margin-top: 0;
+    border-bottom: 1px dashed #ff3333;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+    animation: piscar 1s infinite alternate;
+    /* Reutiliza a animação do terminal */
+}
+
+.texto-alerta {
+    color: var(--cor-texto);
+    font-size: 1.3rem;
+    margin-bottom: 10px;
+}
+
+.texto-alerta-menor {
+    color: var(--cor-texto);
+    opacity: 0.7;
+    font-size: 1rem;
+    margin-bottom: 30px;
+}
+
+.botoes-alerta {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+}
+
+.btn-sim {
+    background-color: transparent;
+    color: #ff3333;
+    border: 1px solid #ff3333;
+    padding: 10px 20px;
+    font-family: 'VT323', monospace;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.btn-sim:hover {
+    background-color: #ff3333;
+    color: #000;
+}
+
+.btn-nao {
+    background-color: transparent;
+    color: var(--cor-texto);
+    border: 1px solid var(--cor-texto);
+    padding: 10px 20px;
+    font-family: 'VT323', monospace;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.btn-nao:hover {
+    background-color: var(--cor-hover);
+}
+
+/* Botão de Logoff no Header */
+.btn-logoff {
+    background-color: transparent;
+    color: #ff3333;
+    /* Vermelho de alerta */
+    border: 1px solid #ff3333;
+    padding: 4px 10px;
+    font-family: 'VT323', monospace;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.btn-logoff:hover {
+    background-color: #ff3333;
+    color: #000;
+}

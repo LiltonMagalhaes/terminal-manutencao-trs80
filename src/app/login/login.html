@@ -1,0 +1,27 @@
+<div class="login-wrapper">
+    <div class="login-terminal">
+        <p class="prompt">&gt; AUTENTICAÇÃO REQUERIDA_</p>
+
+        <div class="form-linha">
+            <label>USUÁRIO:</label>
+            <input type="email" [(ngModel)]="email" placeholder="admin@prisma.com" />
+        </div>
+
+        <div class="form-linha">
+            <label>SENHA:</label>
+            <input type="password" [(ngModel)]="senha" placeholder="******" />
+        </div>
+
+        <button class="btn-executar" (click)="fazerLogin()">&gt; LOGIN_SISTEMA()</button>
+
+        @if (mensagemErro) {
+        <div class="erro-terminal">
+            &gt; ERRO: {{ mensagemErro }}_
+        </div>
+        }
+
+        <div class="dica">
+            [DICA: admin@prisma.com / 123456]
+        </div>
+    </div>
+</div>
