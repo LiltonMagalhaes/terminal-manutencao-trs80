@@ -1,1 +1,27 @@
-<router-outlet></router-outlet>
+@if (isLogado) {
+<header class="header-app">
+    <span class="header-data">{{ dataAtual }}</span>
+
+    <div class="header-centro">
+        <span class="titulo-sistema">SISTEMA DE MANUTENÇÃO</span>
+        <div class="nav-global">
+            <a routerLink="/menu" class="btn-nav">HOME</a>
+        </div>
+    </div>
+
+    <div class="header-controles">
+        <span class="header-hora">{{ horaAtual }}</span>
+        <button class="btn-logoff" (click)="sair()">LOGOFF</button>
+    </div>
+</header>
+}
+
+<main [class.main-app-logado]="isLogado">
+    <router-outlet></router-outlet>
+</main>
+
+@if (isLogado) {
+<footer class="footer-app">
+    <span>© PRISMA DIGITAL - SISTEMA OPERACIONAL - Todos os direitos reservados</span>
+</footer>
+}

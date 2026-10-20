@@ -1,0 +1,111 @@
+<div class="tela-container">
+
+    <!-- FORMULÁRIO -->
+    <div class="box-terminal" [ngClass]="{'editando': idEmEdicao}">
+        <p class="prompt">
+            @if (idEmEdicao) {
+            &gt; EDITANDO REGISTRO #{{ idEmEdicao }}_
+            } @else {
+            &gt; NOVO REGISTRO DE OS_
+            }
+        </p>
+
+        <div class="form-linha">
+            <label>Cliente:</label>
+            <input type="text" [(ngModel)]="novaOS.cliente" placeholder="Nome do cliente..." [disabled]="processando" />
+        </div>
+
+        <div class="form-linha">
+            <label>Equipamento:</label>
+            <input type="text" [(ngModel)]="novaOS.equipamento" placeholder="Ex: Motor WEG 5CV"
+                [disabled]="processando" />
+        </div>
+
+        <div class="form-linha">
+            <label>Defeito:</label>
+            <input type="text" [(ngModel)]="novaOS.defeito" placeholder="Descrição do problema..."
+                [disabled]="processando" />
+        </div>
+
+        <div class="form-linha">
+            <label>Solução:</label>
+            <input type="text" [(ngModel)]="novaOS.solucao" placeholder="Descreva a solução aplicada..."
+                [disabled]="processando" />
+        </div>
+
+        <div class="form-linha">
+            <label>Materiais Utilizados:</label>
+            <input type="text" [(ngModel)]="novaOS.materiais" placeholder="Ex: 2m de fio, 1 disjuntor..."
+                [disabled]="processando" />
+        </div>
+
+        <div class="botoes-form">
+            <button class="btn-executar" (click)="salvar()" [disabled]="processando">
+                @if (idEmEdicao) { &gt; EXECUTAR_ATUALIZAR() } @else { &gt; EXECUTAR_SALVAR() }
+            </button>
+
+            @if (idEmEdicao) {
+            <button class="btn-cancelar" (click)="cancelarEdicao()" [disabled]="processando">
+                &gt; CANCELAR()
+            </button>
+            }
+        </div>
+
+        @if (processando) {
+        <div class="terminal-output">{{ mensagemTerminal }}</div>
+        }
+    </div>
+
+    <!-- LISTAGEM -->
+    <div class="box-terminal">
+        <p class="prompt">&gt; LISTA DE ORDENS DE SERVIÇO_</p>
+        <table class="tabela-terminal">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>DATA</th>
+                    <th>CLIENTE</th>
+                    <th>EQUIPAMENTO</th>
+                    <th>STATUS</th>
+                    <th>AÇÕES</th>
+                </tr>
+            </thead>
+            <tbody>
+                @for (os of ordens(); track os.id) {
+                <tr>
+                    <td>#{{ os.id }}</td>
+                    <td>{{ os.data }}</td>
+                    <td>{{ os.cliente }}</td>
+                    <td>{{ os.equipamento }}</td>
+                    <td>[{{ os.status }}]</td>
+                    <td>
+                        <button class="btn-acao btn-edit" (click)="editar(os)">EDIT</button>
+                        <button class="btn-acao btn-del" (click)="solicitarExclusao(os.id)">DEL</button>
+                    </td>
+                </tr>
+                } @empty {
+                <tr>
+                    <td colspan="6" style="text-align: center;">&gt; NENHUM REGISTRO ENCONTRADO_</td>
+                </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+
+</div>
+
+<!-- MODAL DE CONFIRMAÇÃO -->
+@if (mostrarConfirmacao) {
+<div class="modal-overlay">
+    <div class="modal-alerta">
+        <p class="prompt-alerta">&gt; ALERTA DE SEGURANÇA_</p>
+        <p class="texto-alerta">DESEJA REALMENTE EXCLUIR O REGISTRO #{{ osParaDeletar }}?</p>
+        <p class="texto-alerta-menor">Esta ação não poderá ser desfeita.</p>
+
+        <div class="botoes-alerta">
+            <button class="btn-sim" (click)="confirmarExclusao()">&gt; CONFIRMAR_EXCLUSÃO()</button>
+            <button class="btn-nao" (click)="cancelarExclusao()">&gt; CANCELAR()</button>
+        </div>
+    </div>
+</div>
+}

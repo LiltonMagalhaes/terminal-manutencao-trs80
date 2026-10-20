@@ -1,0 +1,168 @@
+<div class="tela-container">
+
+    <!-- ========================================== -->
+    <!-- MODO 1: TELA DE LISTA E BUSCA              -->
+    <!-- ========================================== -->
+    @if (modoTela === 'lista') {
+    <div class="box-terminal">
+        <p class="prompt">&gt; CONSULTA DE CLIENTES_</p>
+
+        <div class="busca-container">
+            <input type="text" [(ngModel)]="termoBusca" placeholder="Buscar por CPF/CNPJ ou Nome..."
+                class="input-busca" />
+            <button class="btn-novo" (click)="novoCadastro()">[ + NOVO CLIENTE ]</button>
+        </div>
+
+        <table class="tabela-terminal">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>NOME</th>
+                    <th>CPF/CNPJ</th>
+                    <th>CONTATO</th>
+                    <th>CIDADE/UF</th>
+                    <th>AÇÕES</th>
+                </tr>
+            </thead>
+            <tbody>
+                @for (cliente of clientesFiltrados; track cliente.id) {
+                <!-- 👇 A LINHA INTEIRA É CLICÁVEL -->
+                <tr (click)="selecionarCliente(cliente)" class="linha-clicavel">
+                    <td>#{{ cliente.id }}</td>
+                    <td>{{ cliente.nome }}</td>
+                    <td>{{ cliente.cpfCnpj }}</td>
+                    <td>{{ cliente.telefone }}</td>
+                    <td>{{ cliente.cidade }}/{{ cliente.estado }}</td>
+                    <td>
+                        <!-- O DEL impede a propagação do clique na linha (para não editar sem querer) -->
+                        <button class="btn-acao btn-del" (click)="solicitarExclusao(cliente.id, $event)">DEL</button>
+                    </td>
+                </tr>
+                } @empty {
+                <tr>
+                    <td colspan="6" style="text-align: center;">&gt; NENHUM CLIENTE ENCONTRADO_</td>
+                </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+    }
+
+    <!-- ========================================== -->
+    <!-- MODO 2: TELA DE DETALHES / EDIÇÃO          -->
+    <!-- ========================================== -->
+    @if (modoTela === 'detalhes') {
+    <div class="box-terminal" [ngClass]="{'editando': idEmEdicao}">
+
+        <div class="cabecalho-detalhes">
+            <button class="btn-voltar" (click)="voltarParaLista()">[ ← VOLTAR PARA A LISTA ]</button>
+            <p class="prompt">
+                @if (idEmEdicao) {
+                &gt; DADOS DO CLIENTE #{{ idEmEdicao }}_
+                } @else {
+                &gt; NOVO CADASTRO DE CLIENTE_
+                }
+            </p>
+        </div>
+
+        <div class="form-grid">
+            <!-- Dados Pessoais -->
+            <div class="form-linha full-width">
+                <label>Nome / Razão Social:</label>
+                <input type="text" [(ngModel)]="novoCliente.nome" placeholder="Nome completo..." />
+            </div>
+
+            <div class="form-linha">
+                <label>CPF / CNPJ:</label>
+                <input type="text" [ngModel]="novoCliente.cpfCnpj" (input)="formatarCpfCnpj($event)"
+                    placeholder="000.000.000-00" />
+            </div>
+
+            <div class="form-linha">
+                <label>Telefone:</label>
+                <input type="text" [ngModel]="novoCliente.telefone" (input)="formatarTelefone($event)"
+                    placeholder="(00) 00000-0000" />
+            </div>
+
+            <div class="form-linha full-width">
+                <label>E-mail:</label>
+                <input type="email" [(ngModel)]="novoCliente.email" placeholder="email@exemplo.com" />
+            </div>
+
+            <!-- Endereço -->
+            <div class="form-linha">
+                <label>CEP:</label>
+                <input type="text" [ngModel]="novoCliente.cep" (input)="formatarCep($event)" placeholder="00000-000" />
+            </div>
+
+            <div class="form-linha full-width">
+                <label>Endereço:</label>
+                <input type="text" [(ngModel)]="novoCliente.endereco" placeholder="Rua, Avenida..." />
+            </div>
+
+            <div class="form-linha">
+                <label>Número:</label>
+                <input type="text" [(ngModel)]="novoCliente.numero" placeholder="123" />
+            </div>
+
+            <div class="form-linha">
+                <label>Bairro:</label>
+                <input type="text" [(ngModel)]="novoCliente.bairro" placeholder="Centro" />
+            </div>
+
+            <div class="form-linha">
+                <label>Cidade:</label>
+                <input type="text" [(ngModel)]="novoCliente.cidade" placeholder="Rio de Janeiro" />
+            </div>
+
+            <div class="form-linha">
+                <label>Estado:</label>
+                <input type="text" [(ngModel)]="novoCliente.estado" placeholder="RJ" maxlength="2" />
+            </div>
+        </div>
+
+        <div class="botoes-form">
+            <button class="btn-executar" (click)="salvar()" [disabled]="processando">
+                @if (idEmEdicao) { &gt; SALVAR ALTERAÇÕES() } @else { &gt; CADASTRAR CLIENTE() }
+            </button>
+        </div>
+
+        @if (processando) {
+        <div class="terminal-output">{{ mensagemTerminal }}</div>
+        }
+
+        <!-- 👇 ÁREA DE HISTÓRICO E GERAR OS (SÓ APARECE SE JÁ EXISTIR O CLIENTE) -->
+        @if (idEmEdicao) {
+        <div class="area-historico">
+            <hr class="divisor-terminal">
+            <p class="prompt">&gt; HISTÓRICO DE ORDENS DE SERVIÇO_</p>
+
+            <div class="lista-historico">
+                <p class="aviso-vazio">&gt; NENHUMA OS ENCONTRADA PARA ESTE CLIENTE_</p>
+                <!-- (No futuro, um @for de ordens vai ficar aqui) -->
+            </div>
+
+            <button class="btn-gerar-os" routerLink="/ordens-servico">[ + GERAR NOVA OS PARA ESTE CLIENTE ]</button>
+        </div>
+        }
+
+    </div>
+    }
+
+</div> <!-- FIM DO TELA-CONTAINER -->
+
+<!-- MODAL DE CONFIRMAÇÃO -->
+@if (mostrarConfirmacao) {
+<div class="modal-overlay">
+    <div class="modal-alerta">
+        <p class="prompt-alerta">&gt; ALERTA DE SEGURANÇA_</p>
+        <p class="texto-alerta">EXCLUIR O CLIENTE #{{ clienteParaDeletar }}?</p>
+        <p class="texto-alerta-menor">Todos os dados serão perdidos.</p>
+
+        <div class="botoes-alerta">
+            <button class="btn-sim" (click)="confirmarExclusao()">&gt; CONFIRMAR_EXCLUSÃO()</button>
+            <button class="btn-nao" (click)="cancelarExclusao()">&gt; CANCELAR()</button>
+        </div>
+    </div>
+</div>
+}

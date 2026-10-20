@@ -1,0 +1,273 @@
+/* 1. GRID DO FORMULÁRIO */
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px 20px;
+  margin-bottom: 20px;
+}
+
+.full-width {
+  grid-column: 1 / -1;
+}
+
+/* 2. LINHAS E INPUTS */
+.form-linha {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 0;
+}
+
+.form-linha label {
+  color: #33ff33;
+  font-size: 1.1rem;
+  margin-bottom: 4px;
+}
+
+.form-linha input {
+  background-color: transparent;
+  border: 1px solid #1a4d1a;
+  color: #33ff33;
+  padding: 6px 10px;
+  font-family: 'VT323', monospace;
+  font-size: 1.1rem;
+  outline: none;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.form-linha input:focus {
+  border-color: #33ff33;
+  box-shadow: 0 0 8px #33ff33;
+}
+
+/* 3. BOTÕES DO FORMULÁRIO */
+.botoes-form {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.btn-executar {
+  background-color: transparent;
+  color: #33ff33;
+  border: 1px solid #33ff33;
+  padding: 8px 20px;
+  font-family: 'VT323', monospace;
+  font-size: 1.2rem;
+  cursor: pointer;
+  width: 100%;
+}
+
+.btn-executar:hover {
+  background-color: #1a4d1a;
+}
+
+/* 4. TABELA */
+.tabela-terminal {
+  width: 100%;
+  border-collapse: collapse;
+  color: #33ff33;
+  margin-top: 15px;
+}
+
+.tabela-terminal th,
+.tabela-terminal td {
+  border-bottom: 1px dashed #1a4d1a;
+  padding: 8px;
+  text-align: left;
+}
+
+.linha-clicavel {
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.linha-clicavel:hover {
+  background-color: rgba(51, 255, 51, 0.1); /* Brilho sutil verde ao passar o mouse */
+}
+
+/* 5. BARRA DE BUSCA */
+.busca-container {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 15px;
+}
+
+.input-busca {
+  flex: 1;
+  background-color: transparent;
+  border: 1px solid #33ff33;
+  color: #33ff33;
+  padding: 8px 12px;
+  font-family: 'VT323', monospace;
+  font-size: 1.2rem;
+  outline: none;
+}
+
+.btn-novo {
+  background-color: #1a4d1a;
+  color: #33ff33;
+  border: 1px solid #33ff33;
+  padding: 8px 15px;
+  font-family: 'VT323', monospace;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.btn-novo:hover {
+  background-color: #33ff33;
+  color: #000;
+}
+
+/* 6. CABEÇALHO DE DETALHES E VOLTAR */
+.cabecalho-detalhes {
+  margin-bottom: 20px;
+}
+
+.btn-voltar {
+  background-color: transparent;
+  color: #33ff33;
+  border: none;
+  font-family: 'VT323', monospace;
+  font-size: 1.1rem;
+  cursor: pointer;
+  padding: 0;
+  margin-bottom: 10px;
+}
+
+.btn-voltar:hover {
+  text-decoration: underline;
+}
+
+/* 7. ÁREA DE HISTÓRICO E GERAR OS */
+.area-historico {
+  margin-top: 30px;
+}
+
+.divisor-terminal {
+  border: none;
+  border-top: 1px dashed #1a4d1a;
+  margin-bottom: 20px;
+}
+
+.lista-historico {
+  background-color: rgba(0, 0, 0, 0.5);
+  border: 1px dashed #1a4d1a;
+  padding: 15px;
+  margin-bottom: 20px;
+}
+
+.aviso-vazio {
+  margin: 0;
+  color: #33ff33;
+  opacity: 0.6;
+}
+
+.btn-gerar-os {
+  display: block;
+  text-align: center;
+  text-decoration: none;
+  background-color: transparent;
+  color: #ffb000; /* Âmbar */
+  border: 1px solid #ffb000;
+  padding: 12px 20px;
+  font-family: 'VT323', monospace;
+  font-size: 1.3rem;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.btn-gerar-os:hover {
+  background-color: #332200;
+}
+
+/* 8. BOTÃO DEL NA TABELA */
+.btn-acao {
+  background-color: transparent;
+  border: 1px solid #1a4d1a;
+  cursor: pointer;
+  font-family: 'VT323', monospace;
+  font-size: 1.1rem;
+  padding: 2px 8px;
+  transition: all 0.2s;
+}
+
+.btn-del {
+  color: #ff3333;
+}
+.btn-del:hover {
+  background-color: #330000;
+  border-color: #ff3333;
+}
+
+/* 9. MODAL */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.85);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+.modal-alerta {
+  background-color: #000;
+  border: 2px solid #ff3333;
+  padding: 30px;
+  text-align: center;
+}
+
+.prompt-alerta {
+  color: #ff3333;
+  font-size: 1.5rem;
+  border-bottom: 1px dashed #ff3333;
+  padding-bottom: 10px;
+  margin-bottom: 20px;
+}
+
+.texto-alerta {
+  color: #33ff33;
+  font-size: 1.3rem;
+}
+.texto-alerta-menor {
+  color: #33ff33;
+  opacity: 0.7;
+  font-size: 1rem;
+  margin-bottom: 30px;
+}
+
+.botoes-alerta {
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+}
+.btn-sim {
+  background: transparent;
+  color: #ff3333;
+  border: 1px solid #ff3333;
+  padding: 10px 20px;
+  font-family: 'VT323', monospace;
+  font-size: 1.2rem;
+  cursor: pointer;
+}
+.btn-sim:hover {
+  background: #ff3333;
+  color: #000;
+}
+.btn-nao {
+  background: transparent;
+  color: #33ff33;
+  border: 1px solid #33ff33;
+  padding: 10px 20px;
+  font-family: 'VT323', monospace;
+  font-size: 1.2rem;
+  cursor: pointer;
+}
+.btn-nao:hover {
+  background: #1a4d1a;
+}

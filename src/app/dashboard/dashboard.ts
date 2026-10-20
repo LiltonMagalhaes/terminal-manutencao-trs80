@@ -1,7 +1,7 @@
 import { Component, OnInit, signal, ChangeDetectorRef, ChangeDetectionStrategy } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { NgClass } from '@angular/common';
-import { Router } from '@angular/router'; // 👈 Importação do Router
+import { Router, RouterLink } from '@angular/router'; // 👈 RouterLink adicionado aqui
 
 interface OrdemServico {
   id: number;
@@ -14,7 +14,7 @@ interface OrdemServico {
 
 @Component({
   selector: 'app-dashboard',
-  imports: [FormsModule, NgClass],
+  imports: [FormsModule, NgClass, RouterLink], // 👈 RouterLink adicionado aqui
   templateUrl: './dashboard.html',
   styleUrl: './dashboard.css',
   changeDetection: ChangeDetectionStrategy.OnPush
@@ -34,7 +34,6 @@ export class Dashboard implements OnInit {
   mostrarConfirmacao: boolean = false;
   osParaDeletar: number | null = null;
 
-  // 👇 Injetando o ChangeDetectorRef e o Router
   constructor(
     private cdr: ChangeDetectorRef,
     private router: Router
@@ -60,8 +59,6 @@ export class Dashboard implements OnInit {
   // LOGOFF
   // ==========================================
   sair() {
-    // Num sistema real, aqui apagaríamos o token JWT.
-    // Por enquanto, só redireciona para a tela de login.
     this.router.navigate(['/login']);
   }
 

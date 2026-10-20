@@ -1,0 +1,47 @@
+:host {
+  /* 👇 Devolvendo as variáveis que o menu precisa para pintar as coisas */
+  --cor-fundo: #000000;
+  --cor-texto: #33ff33;
+  --cor-borda: #1a4d1a;
+
+  display: block;
+  font-family: 'VT323', monospace;
+  color: var(--cor-texto);
+}
+
+.menu-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 60vh;
+  text-align: center;
+}
+
+.cards-grid {
+  display: flex;
+  gap: 30px;
+  justify-content: center;
+  margin-top: 40px;
+  flex-wrap: wrap;
+}
+
+.card-menu {
+  border: 2px solid var(--cor-borda); /* 👈 A borda volta */
+  padding: 40px;
+  cursor: pointer;
+  transition: all 0.2s;
+  width: 250px;
+  color: var(--cor-texto); /* 👈 O texto volta */
+}
+
+.card-menu:hover {
+  border-color: var(--cor-texto);
+  box-shadow: 0 0 15px rgba(51, 255, 51, 0.2);
+  transform: translateY(-5px);
+}
+
+.card-menu h3 {
+  font-size: 1.8rem;
+  margin-bottom: 10px;
+}
